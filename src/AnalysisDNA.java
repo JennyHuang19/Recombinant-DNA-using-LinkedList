@@ -23,9 +23,9 @@ public class AnalysisDNA {
      * Change these to change the tests to
      * use a different type
      */
-	private static final String strandType = "StringStrand";
+//	private static final String strandType = "StringStrand";
 //    private static final String strandType = "LinkStrand";
-//	private static final String strandType = "StringBuilderStrand";
+	private static final String strandType = "StringBuilderStrand";
 
     private static final String ENZYME = "gaattc";
     private static final int TRIALS = 2;
@@ -115,8 +115,12 @@ public class AnalysisDNA {
         // of breaks in copy
 
         String copy = mySource;
-        String results = strandSpliceBenchmark(ENZYME, splicee, strandType);
-        System.out.println(results);
+        for (int i = 0; i < 10; i++){
+            String results = strandSpliceBenchmark(ENZYME, splicee, strandType);
+            System.out.println(results);
+            mySource = mySource + copy;
+        }
+
 
         System.exit(0);
     }
