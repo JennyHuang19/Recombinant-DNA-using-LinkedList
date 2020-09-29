@@ -49,7 +49,9 @@ public class LinkStrand implements IDnaStrand {
 
     @Override
     public void initialize(String source) {
-
+        myFirst = new Node(source,null);
+        myLast = myFirst;
+        mySize = source.length();
     }
 
     /**
@@ -71,7 +73,7 @@ public class LinkStrand implements IDnaStrand {
      * @return mutated LinkStrand object.
      */
 
-    @Overr
+    @Override
     public IDnaStrand append(String dna) {
         myLast.next = new Node(dna, null);
         myLast = myLast.next;
@@ -87,11 +89,21 @@ public class LinkStrand implements IDnaStrand {
 
     @Override
     public int getAppendCount() {
-        return 0;
+        return myAppends;
     }
 
     @Override
     public char charAt(int index) {
         return 0;
+    }
+
+    public String toString(){
+        Node curr = myFirst;
+        StringBuilder ret = new StringBuilder();
+        while (curr != null){
+            ret.append(curr.info);
+            curr = curr.next;
+        }
+        return ret.toString();
     }
 }
