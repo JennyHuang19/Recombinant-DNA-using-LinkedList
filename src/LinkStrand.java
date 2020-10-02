@@ -65,6 +65,7 @@ public class LinkStrand implements IDnaStrand {
         myIndex = 0; //lastCall.charAt();
         myLocalIndex = 0; //lastCall.dex;
         myCurrent = myFirst; //lastCall.list;
+        myAppends = 0;
     }
 
     /**
@@ -134,7 +135,7 @@ public class LinkStrand implements IDnaStrand {
 
     @Override
     public char charAt(int index) {
-        if (0 > index || this.size() - 1 < myIndex) {
+        if (this.size() <= myIndex || 0 > index) {
             throw new IndexOutOfBoundsException();
         }
         if(index < myIndex){
