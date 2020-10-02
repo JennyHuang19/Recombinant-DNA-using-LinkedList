@@ -13,6 +13,9 @@ public class LinkStrand implements IDnaStrand {
     private Node myFirst, myLast;
     private long mySize;
     private int myAppends;
+    private int myIndex;
+    private int myLocalIndex;
+    private Node myCurrent;
 
     /**
      * Constructor with argument
@@ -46,12 +49,22 @@ public class LinkStrand implements IDnaStrand {
         return mySize;
     }
 
-
+    /**
+     * Initialize this strand so that it represents the value of source. No
+     * error checking is performed.
+     *
+     * @param source
+     *            is the source of this enzyme
+     * @return a single node.
+     */
     @Override
     public void initialize(String source) {
         myFirst = new Node(source,null);
         myLast = myFirst;
         mySize = source.length();
+        myIndex = 0; //lastCall.charAt();
+        myLocalIndex = 0; //lastCall.dex;
+        myCurrent = myFirst; //lastCall.list;
     }
 
     /**
@@ -82,6 +95,12 @@ public class LinkStrand implements IDnaStrand {
         return this;
     }
 
+    /**
+     * Creates a new LinkStrand object that is the reverse
+     * of the object on which it's called.
+     * @return new reversed LinkStrand object.
+     */
+
     @Override
     public IDnaStrand reverse() {
         LinkStrand reversed = new LinkStrand();
@@ -96,13 +115,28 @@ public class LinkStrand implements IDnaStrand {
         return reversed;
     }
 
+    /**
+     * Returns the number of appends
+     * @return number of appends.
+     */
+
     @Override
     public int getAppendCount() {
         return myAppends;
     }
 
+    /**
+     * Finds a character at a specific index in a linked list of strings
+     * @param index
+     *            an int, the index to find.
+     * @return the character at the specified index.
+     */
+
     @Override
     public char charAt(int index) {
+        if (0 > index || this.size() - 1 < myIndex) {
+            throw new IndexOutOfBoundsException();
+        }
         return 0;
     }
 
