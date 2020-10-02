@@ -139,11 +139,13 @@ public class LinkStrand implements IDnaStrand {
         }
         if(index < myIndex){
             myIndex = 0;
+            myLocalIndex = 0;
+            myCurrent = myFirst;
         }
         while (myIndex < index){        // when equal, loop will break
             myIndex++;
             myLocalIndex++;
-            if(myLocalIndex >= myCurrent.info.length()){
+            if(myLocalIndex >= myCurrent.info.length() && myCurrent.next != null){
                 myLocalIndex = 0;
                 myCurrent = myCurrent.next;
             }
