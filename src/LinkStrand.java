@@ -137,7 +137,18 @@ public class LinkStrand implements IDnaStrand {
         if (0 > index || this.size() - 1 < myIndex) {
             throw new IndexOutOfBoundsException();
         }
-        return 0;
+        if(index < myIndex){
+            myIndex = 0;
+        }
+        while (myIndex < index){        // when equal, loop will break
+            myIndex++;
+            myLocalIndex++;
+            if(myLocalIndex >= myCurrent.info.length()){
+                myLocalIndex = 0;
+                myCurrent = myCurrent.next;
+            }
+        }
+        return myCurrent.info.charAt(myLocalIndex);
     }
 
     public String toString(){
